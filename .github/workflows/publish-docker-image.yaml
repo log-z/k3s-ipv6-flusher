@@ -6,7 +6,11 @@ on:
       - 'release'
     tags:
       - 'v*'
-    workflow_dispatch:
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   push_to_registries:
