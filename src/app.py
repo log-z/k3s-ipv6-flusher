@@ -26,7 +26,7 @@ def init_client():
     """初始化客户端
     """
 
-    config.load_kube_config()
+    config.load_incluster_config()
     return client.CoreV1Api()
 
 def update_ip6(node, cli):
