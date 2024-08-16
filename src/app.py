@@ -26,8 +26,8 @@ def init_client():
     """初始化客户端
     """
 
-    api_client = client.ApiClient()
-    return client.CoreV1Api(api_client)
+    config.load_kube_config()
+    return client.CoreV1Api()
 
 def update_ip6(node, cli):
     """更新IPv6地址
