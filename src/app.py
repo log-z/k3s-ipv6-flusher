@@ -26,7 +26,6 @@ def init_client():
     """初始化客户端
     """
 
-    config.load_kube_config()
     api_client = client.ApiClient()
     return client.CoreV1Api(api_client)
 
