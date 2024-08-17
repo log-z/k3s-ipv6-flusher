@@ -1,0 +1,10 @@
+apiVersion: v2
+name: k3s-ipv6-flusher
+description: K3s IPv6 Flusher
+home: https://github.com/log-z/k3s-ipv6-flusher
+keywords:
+  - ipv6
+  - k3s
+sources:
+  - https://github.com/log-z/k3s-ipv6-flusher
+version: 0.0.0
