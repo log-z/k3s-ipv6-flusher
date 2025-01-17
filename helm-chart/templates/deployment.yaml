@@ -24,7 +24,7 @@ spec:
         startupProbe:
           failureThreshold: 3
           successThreshold: 1
-          initialDelaySeconds: 0
+          initialDelaySeconds: 10
           timeoutSeconds: 1
           periodSeconds: 5
           exec:
@@ -35,7 +35,7 @@ spec:
         readinessProbe:
           failureThreshold: 3
           successThreshold: 1
-          initialDelaySeconds: 5
+          initialDelaySeconds: 15
           timeoutSeconds: 1
           periodSeconds: 10
           exec:
@@ -53,5 +53,4 @@ spec:
             command:
             - python
             - health.py
-            - liveliness
-
+            - liveness
