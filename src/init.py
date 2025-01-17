@@ -1,8 +1,12 @@
+import os
 import sys
 import logging
+import conf
 
 def init():
     init_logging()
+    init_tmp_dir()
+    save_pid()
 
 def init_logging():
     """初始化日志
@@ -24,3 +28,18 @@ def exception_hook(exc_type, exc_value, exc_traceback):
     
     # 记录异常信息到日志
     logging.error("Uncaught exception.", exc_info=(exc_type, exc_value, exc_traceback))
+
+def init_tmp_dir():
+    """初始化临时目录
+    """
+
+    if not os.path.exists(conf.TMP_DIR):
+        os.makedirs(conf.TMP_DIR)
+
+def save_pid():
+    """保存进程ID
+    """
+
+    with open(conf.PID_FILENAME, 'w') as f:
+        pid = os.getpid()
+        f.write(str(pid))

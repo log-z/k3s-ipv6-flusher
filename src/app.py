@@ -3,7 +3,9 @@ from kubernetes.client.rest import ApiException
 import os
 import init
 import time
+import datetime
 import logging
+import conf
 
 VAL_TRUE = 'true'
 ANNOTATION_FLAG_EXCLUDE = 'k3s-ipv6-flusher.log-z.github.com/exclude'
@@ -26,6 +28,7 @@ def init_client():
     """初始化客户端
     """
 
+    # config.load_kube_config()
     config.load_incluster_config()
     return client.CoreV1Api()
 
@@ -75,14 +78,22 @@ def isip6(ip: str):
 
     return ':' in ip
 
+def update_mark():
+    """更新记号
+    """
+
+    with open(conf.MARK_FILENAME, 'w') as f:
+        now = datetime.datetime.now().isoformat()
+        f.write(now)
 
 if __name__ == '__main__':
     init.init()
 
-    interval = os.getenv('IPV6_FLUSHER_INTERVAL', 60)
+    interval = conf.get_interval()
     logging.info('K3s IPv6 Flusher is running.')
     logging.info(f'CONF interval = {interval}s')
 
     while True:
         running()
-        time.sleep(interval)
+        update_mark()
+        time.sleep(float(interval))

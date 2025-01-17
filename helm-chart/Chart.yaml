@@ -7,4 +7,4 @@ keywords:
   - k3s
 sources:
   - https://github.com/log-z/k3s-ipv6-flusher
-version: 0.0.0
+version: 0.0.1
