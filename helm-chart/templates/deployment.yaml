@@ -3,15 +3,19 @@ kind: Deployment
 metadata:
   name: ipv6-flusher
   namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: ipv6-flusher
+
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ipv6-flusher
+      app.kubernetes.io/name: ipv6-flusher
   template:
     metadata:
       labels:
-        app: ipv6-flusher
+        app.kubernetes.io/name: ipv6-flusher
+        app.kubernetes.io/instance: ipv6-flusher
     spec:
       serviceAccountName: ipv6-flusher
       containers:
